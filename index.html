@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="main.css">
+    <title>Suki Violet Gallery</title>
+    <meta name="description" content="Now in 3D!">
+
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.6.0/aframe-master.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.8.6/dist/aframe-extras.min.js"></script>
+
+    <script src="https://unpkg.com/aframe-lensflare-component/dist/aframe-lensflare-component.min.js"></script>
+
+    <script
+        src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
+
+
+    <!-- Animation -->
+
+
+    <!-- <script src="//unpkg.com/aframe-extras@4.1.2/dist/aframe-extras.min.js"></script> -->
+    <script src="//unpkg.com/aframe-physics-system@3.1.2/dist/aframe-physics-system.min.js"></script>
+
+
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                let x = document.getElementById("loading");
+                let y = document.getElementById("enter_gallery");
+                let z = document.getElementById("splash_grid");
+                x.style.display = "none";
+                y.style.display = "block";
+                z.style.backgroundColor = "rgba(0, 0, 0, 0.521)";
+
+
+            }, 10000)
+        })
+    </script>
+
+</head>
+
+<body>
+
+
+    <!-- Splash Screen -->
+    <div class="splash" id="splash_grid">
+        <div id="content">
+            <div class="content_row">
+                <div class="content_column" id="column_left" style="margin-left: 0px;">
+                    <div id="shutdownGallery_logo"
+                        style="width: 70%; display: flex; align-items: center; justify-content: space-between;">
+
+                        <img class="logo" src="./img/new_img/logo.png" alt="hero">
+                        <img src="./img/purple_png.png" alt="logo" style="width: 25%; height: auto;" />
+                    </div>
+                    <div id="primaryContent_container">
+                        <div id="primaryContent">
+                            <h1>SUKI <span style="color: #7B06E3;">VIOLET</span></h1>
+                            <h2 style="font-weight: 300;">Welcome to suki violet virtual gallery experience</h2>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="splash__card">
+            <h3 style="font-weight:300; height: 30%; display: flex; align-items: center;">For best experience, use
+                desktop or a larger viewport.</h3>
+            <div style="height: 70%; display: flex; flex-direction: column; justify-content: space-around">
+                <h2 id="loading">Loading gallery...</h2>
+                <button id="enter_gallery" class="splash__button" style="display: none;">Click to enter the
+                    gallery</button>
+
+                <div style="display:flex; justify-content: space-between; width: 75%;">
+                    <div style="width: 40%;">
+                        <img src="./img/keyboard_wasd.png" alt="keyboard_wasd" style="width: 46%;" />
+                        <p style="width: 75%;">Press this keys on your keyboard to move around</p>
+                    </div>
+
+                    <div style="width: 40%;">
+                        <img src="./img/mouse.png" alt="mouse" style="width: 21%;" />
+                        <p style="width: 75%;">Move your mouse to look around</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <a-scene>
+
+        <!-- Load Assets -->
+        <a-assets>
+            <!-- global -->
+            <img id="floor" src="img/floor/floor2.webp">
+            <img id="Top_floor" src="img/floor/floor1.jpg">
+            <img id="ground_floor" src="img/new_img/ground_ground.jpg">
+            <img id="Logo" src="img/new_img/logo.png">
+            <img id="Top_box" src="img/other/floorimage.jpg">
+            <img id="wall" src="img/new_img/asd.jpg">
+
+            <img src="img/floor/flare.jpg" alt="Test Lensflare Asset" id="flare-asset">
+
+
+            <!-- Example Room 2-->
+            <img id="room2-final2" src="img/new_img/img2.jpg">
+
+            <img id="img__3" src="img/new_img/img3.jpg">
+            <img id="img__4" src="img/new_img/img4.jpg">
+            <img id="img__5" src="img/new_img/img5.jpg">
+            <img id="img__6" src="img/new_img/img6.jpg">
+
+            <img id="room2-wire1" src="img/new_img/img7.jpg">
+            <img id="room2-wire3" src="img/new_img/img8.jpg">
+            <img id="room2-wire4" src="img/new_img/img9.jpg">
+
+            
+
+            <!-- Left wall images -->
+            <img id="room3-example_left_1" src="img/new_img/img19.jpg">
+            <img id="room3-example_left_2" src="img/new_img/img13.jpg">
+            <img id="room3-example_left_3" src="img/new_img/img14.jpg">
+            <img id="room3-example_left_4" src="img/new_img/img15.jpg">
+
+            <img id="room3-page-before" src="img/new_img/img10.jpg">
+            <img id="room3-page-after" src="img/new_img/img11.jpg">
+            <img id="room3-page-after_1" src="img/new_img/img12.jpg">
+
+
+            <!-- Example Room 4-->
+            <img id="room4-backwall_1" src="img/new_img/img16.jpg" />
+            <img id="room4-backwall_2" src="img/new_img/img17.jpg" />
+            
+            <a-asset-item id="human_obj" src="nefertiti-obj/nefertiti.obj"></a-asset-item>
+            <a-asset-item id="human_mtl" src="nefertiti-obj/nefertiti.mtl"></a-asset-item>
+
+            <a-asset-item id="office_guy_obj" src="office-guy-obj/office-guy.obj"></a-asset-item>
+            <a-asset-item id="office_guy_mtl" src="office-guy-obj/office-guy.mtl"></a-asset-item>
+
+            <!-- Human with coat -->
+            <a-asset-item id="human_with_coat_obj" src="Human1/dennis-posed-004.obj"></a-asset-item>
+            <a-asset-item id="human_with_coat_mtl" src="Human1/dennis-posed-004.mtl"></a-asset-item>
+
+
+            <a-asset-item id="optimerBoldFont"
+                src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+
+
+
+
+
+
+            <!-- Images -->
+
+            <img id="img__18" src="img/new_img/img18.jpg">
+            <img id="img__19" src="img/new_img/img19.jpg">
+            <img id="img__20" src="img/new_img/img20.jpg">
+            <img id="img__21" src="img/new_img/img21.jpg">
+            <img id="img__22" src="img/new_img/img22.jpg">
+            <img id="img__23" src="img/new_img/img23.jpg">
+            <img id="img__24" src="img/new_img/img24.jpg">
+            <img id="img__25" src="img/new_img/img25.jpg">
+            <img id="img__26" src="img/new_img/img26.jpg">
+            <img id="img__27" src="img/new_img/img27.jpg">
+            <img id="img__28" src="img/new_img/img28.jpg">
+            <img id="img__29" src="img/new_img/img29.jpg">
+            <img id="img__30" src="img/new_img/img30.jpg">
+
+
+
+
+            <!-- NFTs images -->
+
+            <img id="nft1" src="img/NFT/nft1.png">
+            <img id="nft2" src="img/NFT/nft2.jpg">
+            <img id="nft3" src="img/NFT/nft3.jpg">
+            <img id="nft4" src="img/NFT/nft4.jpg">
+            <img id="nft5" src="img/NFT/nft5.jpg">
+            <img id="nft6" src="img/NFT/nft6.jpg">
+            <img id="nft7" src="img/NFT/nft7.jpg">
+            <img id="nft8" src="img/NFT/nft8.jpg">
+            <img id="nft9" src="img/NFT/nft9.jpg">
+            <img id="nft10" src="img/NFT/nft10.jpg">
+
+        </a-assets>
+
+
+        <a-entity id="player" universal-controls kinematic-body jump-ability>
+            <a-entity camera position="0 1.6 0"></a-entity>
+        </a-entity>
+
+        <!-- <a-entity
+            text-geometry="value: SUKI VIOLET; font: #optimerBoldFont" material="color: #7B06E3" position="-4 7 0" scale="2 2 1">
+        </a-entity> -->
+
+        <a-box color="grey" src="#Top_floor" depth="2" height="1" width="0.2" position="0 0.5 0" scale="5 2 1">
+        </a-box>
+        <a-entity static-body position="0 2.5 0" rotation="0 0 0">
+            <a-entity obj-model="obj: #human_obj; mtl: #human_mtl" scale="0.2 0.2 0.2" rotation="0 0 0"></a-entity>
+        </a-entity>
+
+
+        <a-plane id="ground" static-body material="src: #Top_floor; repeat: 1 1" side="double" position="0.4 0.5 0"
+            scale="2 2 1" rotation="0 90 90"></a-plane>
+
+
+
+
+
+        <!-- Office guy model -->
+        <a-entity static-body position="-15 0.2 3" rotation="10 -50 0">
+            <a-entity obj-model="obj: #office_guy_obj; mtl: #office_guy_mtl" scale="0.02 0.02 0.02" rotation="0 0 0">
+            </a-entity>
+        </a-entity>
+
+        
+        <!-- Human with coat -->
+        <a-entity static-body position="15 0.2 4" rotation="0 0 0">
+            <a-entity obj-model="obj: #human_with_coat_obj; mtl: #human_with_coat_mtl" scale="2 2 2" rotation="0 90 0">
+            </a-entity>
+        </a-entity>
+        <a-entity static-body position="-15 0.2 -7.5" rotation="0 0 0">
+            <a-entity obj-model="obj: #human_with_coat_obj; mtl: #human_with_coat_mtl" scale="2 2 2" rotation="0 -90 0">
+            </a-entity>
+        </a-entity>
+
+
+
+
+        <!-- /////////////////// -->
+
+        <a-box position="-26.891 6.86554 19.81798" rotation="0 90 0" src="#img__26" height="7" depth="0.2" width="8"
+            shader="flat" material="" geometry="height:8;width:7.46">
+        </a-box>
+        <a-box position="-20.20448 6.58395 24.05759" rotation="" src="#img__27" height="7" depth="0.2" width="8"
+            shader="flat" material="" geometry="height:9;width:10">
+        </a-box>
+        <a-box position="-20.99323 6.85762 14.91904" rotation="0 -180 0" src="#img__28" height="7" depth="0.2" width="8"
+            shader="flat" material="" geometry="height:9;width:10">
+        </a-box>
+
+        <a-box position="-26.911 6.86554 -20" rotation="0 90 0" src="#img__25" height="7" depth="0.2" width="8"
+            shader="flat" material="" geometry="height:8;width:7.46">
+        </a-box>
+        <a-box position="-21.00323 6.85762 -15.08" rotation="0 -180 0" src="#img__29" height="7" depth="0.2" width="8"
+            shader="flat" material="" geometry="height:9;width:10">
+        </a-box>
+        <a-box position="-20.20448 6.58395 -26.9" rotation="" src="#img__30" height="7" depth="0.2" width="8"
+            shader="flat" material="" geometry="height:9;width:10">
+        </a-box>
+
+        <!-- /////////////////// -->
+
+
+
+
+        <!-- Exampe Room 1 (Immediate right) -->
+        <a-entity position="10.5 2.5 19.5" rotation="0 -90 0">
+            <a-entity rotation="0 -90 0">
+                <!-- <a-entity src="#N_video" area-light="intensity: 5; showHelper: false; color: red; helperColor: false" position="9 1.5 -4"> -->
+                <a-entity material="color: black" text="width: 3; value: SUKI VIOLET;" scale="12 12 6"
+                    position="21 4 -4"></a-entity>
+                <!-- <a-box src="#Logo" height="5" depth="0.2" width="5" position="17 2.5 -4"></a-box> -->
+                <a-circle src="#Logo" shader="flat" radius="3" position="17 4 -4.2"></a-circle>
+
+            </a-entity>
+        </a-entity>
+
+
+        <!-- Example Room 2 (First Left) -->
+        <a-entity position="-10.5 1.5 7.5" rotation="0 90 0">
+            <a-entity rotation="0 -90 0">
+                <a-box position="-16.28 6.44 -7.03" src="#nft1" shader="flat" height="6" depth="0.2" width="14"
+                    rotation="0 90 0">
+                </a-box>
+            </a-entity>
+
+
+            <a-entity rotation="0 90 0">
+                <a-box position="11.43 2 -4.4" src="#nft6" shader="flat" height="6" depth="0.2" width="8"></a-box>
+
+                <a-box position="2.66 2 -4.4" src="#nft5" shader="flat" height="6" depth="0.2" width="8"></a-box>
+
+                <a-box position="2.66 9 -4.4" src="#nft7" shader="flat" height="6" depth="0.2" width="8"></a-box>
+
+                <a-box position="11.43 9 -4.4" src="#nft8" shader="flat" height="6" depth="0.2" width="8"></a-box>
+            </a-entity>
+        </a-entity>
+
+
+        <a-entity position="-18.7 2 -28.32" rotation="0 -180 0">
+            <a-box position="-4 9 -16.5" src="#nft2" shader="flat" height="7" depth="0.2" width="13"></a-box>
+            <a-box position="1.9 1.7 -16.5" src="#nft3" shader="flat" height="6" depth="0.2" width="8"></a-box>
+            <a-box position="-7.83 1.7 -16.5" src="#nft4" shader="flat" height="6" depth="0.2" width="8"></a-box>
+        </a-entity>
+
+
+
+
+
+
+        <!-- Room 3 (First Right) -->
+        <a-entity position="7.5 1.5 7.5" rotation="0 -90 0">
+
+            <!-- Back wall -->
+            <a-box position="-8 7 -16.5" src="#room3-page-before" height="5" depth="0.2" width="5"></a-box>
+            <a-box position="-2 7 -16.5" src="#room3-page-after" height="5" depth="0.2" width="5"></a-box>
+            <a-box position="-4.5 1.2 -16.5" src="#room3-page-after_1" height="5" depth="0.2" width="8"></a-box>
+            <a-box position="-34.5 14 -3" rotation="0 90 0" src="#room3-page-before" height="5" depth="0.2" width="5">
+            </a-box>
+            <a-box position="-34.5 14 -10" rotation="0 90 0" src="#room3-page-after" height="5" depth="0.2" width="5">
+            </a-box>
+            <a-box position="-21.5 1.2 -16.5" shader="flat" src="#room3-page-after_1" height="5" depth="0.2" width="8">
+            </a-box>
+
+            <!--right wall -->
+            <a-entity rotation="0 -90 0">
+                <a-box position="-16 4.5 -14" rotation="0 90 0" src="#img__3" height="5" depth="0.2" width="5"
+                    shader="flat">
+                </a-box>
+                <a-box position="-16 4.5 -8" rotation="0 90 0" src="#img__4" height="5" depth="0.2" width="5"
+                    shader="flat">
+                </a-box>
+                <a-box position="-4 4.5 -4.6" src="#img__5" height="6" depth="0.2" width="6" shader="flat">
+                </a-box>
+                <a-box position="-12 4.5 -4.6" rotation="0 0 0" shader="flat" src="#img__6" height="6" depth="0.2"
+                    width="6">
+                </a-box>
+            </a-entity>
+
+            <!--left wall -->
+            <a-entity rotation="0 -90 0">
+                <a-box position="-11.48 9 -1.4" src="#room3-example_left_1" height="5" depth="0.2" width="5"
+                    material="shader:flat" geometry="width:7;height:6">
+                </a-box>
+                <a-box position="-2.45 2.45 -1.4" src="#room3-example_left_2" height="5" depth="0.2" width="5"
+                    material="shader:flat" geometry="height:6;width:7"></a-box>
+                <a-box position="-11.48 2.45 -1.4" src="#room3-example_left_3" height="5" depth="0.2" width="5"
+                    material="shader:flat" geometry="height:6;width:7"></a-box>
+                <a-box position="-2.45 9 -1.4" src="#room3-example_left_4" height="5" depth="0.2" width="5"
+                    material="shader:flat" geometry="width:7;height:6">
+                </a-box>
+            </a-entity>
+
+        </a-entity>
+
+
+        <a-sphere id="flare" radius="0.001"
+            lensflare="createLight:true; relative: true; src: #flare-asset; position:20 1 0.06; lightColor:rgb(0, 0, 102); intensity:1; lightType:directional;"
+            position="-12 1 -20"></a-sphere>
+
+        <a-sphere id="flare" radius="0.001"
+            lensflare="createLight:true; relative: true; src: #flare-asset; position:20 1 0.06; lightColor:rgb(76, 0, 153); intensity:1.5; lightType:directional;"
+            position="12 1 -20"></a-sphere>
+
+        <!-- Stairs -->
+        <a-entity position="2.2 -0.2 -2.24" rotation="0 -90 0">
+            <a-box static-body color="#203120" position="0 0 -3" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 0.2 -4" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 0.4 -5" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 0.6 -6" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 0.8 -7" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 1 -8" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 1.2 -9" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 1.4 -10" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 1.6 -11" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 1.8 -12" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 2 -13" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 2.2 -14" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 2.4 -15" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 2.6 -16" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 2.8 -17" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#fff" position="0 3 -18" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="0 3.25 -19.75" rotation="-90 0 0" scale="4 3.5 0.05">
+            </a-box>
+            <a-box static-body color="#fff" position="-1.99 3.25 -19.51" rotation="0 90 0" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="-2.79 3.6 -19.51" rotation="0 90 0" scale="4 0.5 1">
+            </a-box>
+            <a-box static-body color="#fff" position="-3.56 3.96 -19.51" rotation="0 90 0" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="-4.57 4.35 -19.51" rotation="0 90 0" scale="4 0.5 1">
+            </a-box>
+            <a-box static-body color="#fff" position="-5.3 4.71 -19.51" rotation="0 90 0" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="-6.01 4.99 -19.51" rotation="0 90 0" scale="4 0.5 1">
+            </a-box>
+            <a-box static-body color="#fff" position="-6.94 5.28 -19.51" rotation="0 90 0" scale="4 0.5 1"></a-box>
+            <a-box static-body color="#203120" position="-7.63 5.6 -19.51" rotation="0 90 0" scale="4 0.5 1">
+            </a-box>
+            <a-box static-body color="#fff" position="-8.33 5.93 -19.51" rotation="0 90 0" scale="4 0.5 1"></a-box>
+
+            <a-box color="gray" height="1" width="400" depth="400" static-body position="0 -0.7 0"></a-box>
+        </a-entity>
+
+
+        <a-box src="#wall" depth="1" height="5" width="0.2" position="5.5 1 -11" scale="5 2 1"></a-box>
+        <a-plane id="ground" static-body material="src: #wall; repeat: 1 1" side="double" position="5.5 1 -11"
+            scale="5 1 1" rotation="0 90 90"></a-plane>
+
+
+        <!-- Ground -->
+        <a-grid id="ground" static-body material="src: #ground_floor; repeat: 10 10" rotation="0 -90 0" color="white">
+        </a-grid>
+
+        <a-plane id="ground" static-body material="src: #Top_floor; repeat: 1 1" side="double" position="15 6 -20"
+            scale="20 20 0" rotation="-90 0 0"></a-plane>
+        <a-plane id="ground" static-body material="src: #Top_floor; repeat: 1 1" side="double" position="5 12 -20"
+            scale="20 12 0" rotation="0 90 0"></a-plane>
+
+
+
+
+        <a-plane id="ground" static-body material="src: #Top_floor; repeat: 1 1" side="double" position="0 21 25"
+            scale="100 100 100" rotation="-90 0 0"></a-plane>
+
+        <!-- //////////////////// Wall Lighting //////////////// -->
+
+        <a-entity position="16 24 -23" rotation="-70 45 90"
+            light="castShadow:true; color:#ffffff; angle:40;  distance:20.0; type:spot; intensity:7; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-entity>
+        <a-sphere position="-9 16 -11" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-70 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:8.61; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-15.5 16 -11" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-70 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:8.61; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-22.5 16 -11" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-70 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:8.61; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-26 16 -8.768" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:8.61; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-26 16 -1" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:8.61; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-26 16 7" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:8.61; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-24 16 11" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-18 16 11" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="-12 16 11" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:8.61; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="11 16 7" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="19 16 7" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="22 16 1" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="15 20 -24" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal" rotation="-90 0 0"
+            light="castShadow:true; color:#f8d6ff; angle:50;  distance:20.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-sphere position="23.696 9.66 -7.29" scale="0.2 0.2 0.2" material="color: #FFF" shader="portal"
+            rotation="-80 60"
+            light="castShadow:true; color:#f8d6ff; angle:40;  distance:10.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+
+
+
+
+
+        <a-entity position="9.6 4.9 -6.42" rotation="-70 0 90"
+            light="castShadow:true; color:#ffffff; angle:40;  distance:20.0; type:spot; intensity:1; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-entity>
+
+        <a-sphere position="-0.029 0.290 1.030" scale="0.05 0.05 0.05" material="color: #8d7211" shader="portal"
+            rotation="37.019999999999996 0 0"
+            light="castShadow:true; color:#8d7211; angle:50;  distance:20.0; type:spot; intensity:5; penumbra:0.5; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79;  shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2;">
+        </a-sphere>
+        <a-entity position="-0.039 0.4 1.46" rotation="37.019999999999996 0 0"
+            light="angle:44.27; intensity:5.01; distance:5.06; color:#8d7211; type:spot"></a-entity>
+        <a-entity position="4.9 0.336 -7.685" rotation="38.890 0 0"
+            light="angle:44.27; intensity:5.01; distance:8.136; color:#fff; type:spot"></a-entity>
+
+        <!-- Walls (used by map.js) -->
+        <a-entity id="walls"></a-entity>
+
+
+        <!-- Sky -->
+        <a-sky id="sky" color="#000000"></a-sky>
+
+    </a-scene>
+
+
+    <script src="js/second_floor.js"></script>
+    
+    <script>
+        const enterButton = document.querySelector('.splash__button')
+        const splash = document.querySelector('.splash');
+
+        enterButton.addEventListener('click', () => {
+            splash.style.display = 'none';
+        });
+
+    </script>
+</body>
+
+</html>
